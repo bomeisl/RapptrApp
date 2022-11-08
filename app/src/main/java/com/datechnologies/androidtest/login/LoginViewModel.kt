@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.datechnologies.androidtest.MainActivity
+import com.datechnologies.androidtest.navigation.Screens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -32,5 +34,10 @@ class LoginViewModel(): ViewModel() {
         }
         message_dialog = !message_dialog
 
+    }
+
+    fun alert_dialog_button(navController: NavController) {
+        message_dialog = false
+        if (code == "Success") navController.navigate(Screens.Home.route)
     }
 }

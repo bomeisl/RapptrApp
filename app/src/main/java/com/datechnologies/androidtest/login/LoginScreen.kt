@@ -21,8 +21,6 @@ import com.datechnologies.androidtest.navigation.Header
 import okhttp3.OkHttpClient
 import kotlin.math.log
 
-val client = OkHttpClient()
-
 @Composable
 fun LoginScreen(
     navController: NavController,
@@ -74,7 +72,7 @@ fun LoginScreen(
                     )
                 }
                 if (loginViewModel.message_dialog) {
-                    MessageDialog(loginViewModel)
+                    MessageDialog(loginViewModel, navController)
                 }
             }
         }
@@ -111,7 +109,7 @@ fun LoginTextField(field: String) {
 
 
 @Composable
-fun MessageDialog(loginViewModel: LoginViewModel) {
+fun MessageDialog(loginViewModel: LoginViewModel, navController: NavController) {
     AlertDialog(
         onDismissRequest = {
             var message_dialog = false
@@ -131,9 +129,9 @@ fun MessageDialog(loginViewModel: LoginViewModel) {
             ) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { loginViewModel.message_dialog = false }
+                    onClick = { loginViewModel.alert_dialog_button(navController) }
                 ) {
-                    Text("Dismiss")
+                    Text("OK")
                 }
             }
         }
