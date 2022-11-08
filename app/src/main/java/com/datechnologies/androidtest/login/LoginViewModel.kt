@@ -6,15 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.datechnologies.androidtest.MainActivity
 import com.datechnologies.androidtest.navigation.Screens
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okio.IOException
 
 class LoginViewModel(): ViewModel() {
     val network = LoginNetworking()
