@@ -117,11 +117,11 @@ fun MessageDialog(loginViewModel: LoginViewModel) {
             var message_dialog = false
         },
         title = {
-            Text(text = "Login Error")
+            Text(text = loginViewModel.code)
         },
         text = {
             Text(
-                text = loginViewModel.login_response
+                text = loginViewModel.message
             )
         },
         buttons = {
@@ -131,7 +131,7 @@ fun MessageDialog(loginViewModel: LoginViewModel) {
             ) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { var message_dialog = false }
+                    onClick = { loginViewModel.message_dialog = false }
                 ) {
                     Text("Dismiss")
                 }

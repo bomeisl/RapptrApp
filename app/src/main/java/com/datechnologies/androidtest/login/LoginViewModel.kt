@@ -20,11 +20,15 @@ class LoginViewModel(): ViewModel() {
     var password by mutableStateOf("")
     var login_response by mutableStateOf("")
     var message_dialog by mutableStateOf(false)
+    val json_parser = JsonParser()
+    var code by mutableStateOf("")
+    var message by mutableStateOf("")
 
     fun login() {
         viewModelScope.launch {
             login_response = network.loginOutput(email, password)
-
+            code = json_parser.code(login_response).toString()
+            message = json_parser.message(login_response).toString()
         }
         message_dialog = !message_dialog
 
