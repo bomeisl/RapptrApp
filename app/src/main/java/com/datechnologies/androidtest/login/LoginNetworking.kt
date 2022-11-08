@@ -1,45 +1,43 @@
 package com.datechnologies.androidtest.login
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
-import okhttp3.Callback
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okio.IOException
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
-import androidx.lifecycle.Observer
-import kotlinx.coroutines.delay
+import okhttp3.*
+import okhttp3.MultipartBody.Companion.FORM
+import okhttp3.internal.format
+import java.io.IOException
+import java.text.Normalizer.Form
+
 
 class LoginNetworking {
 
-    suspend fun loginOutput(email: String, password: String) = withContext(Dispatchers.IO) {
-        postLogin(email, password)
-    }
+    suspend fun loginOutput(email: String, password: String): String {
+        return withContext(Dispatchers.IO) {
+            val client = OkHttpClient()
 
+            val formBody = FormBody.Builder()
+                .add("email", email)
+                .add("password", password)
+                .build()
+            val request = Request.Builder()
+                .url("http://dev.rapptrlabs.com/Tests/scripts/login.php")
+                .post(formBody)
+                .build()
 
-    fun postLogin(
-        email: String,
-        password: String
-    ) {
-        val client = OkHttpClient()
+            try {
+                val response = client.newCall(request).execute()
+                return@withContext response.body!!.string()
 
-        val formBody = FormBody.Builder()
-            .add("email", email)
-            .add("password", password)
-            .build()
-        val request = Request.Builder()
-            .url("https://en.wikipedia.org/w/index.php")
-            .post(formBody)
-            .build()
-
-        client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) throw IOException("Unexpected code $response")
-
-            println(response.body!!.string())
+            } catch (e: IOException) {
+                e.printStackTrace()
+                return@withContext e.toString()
+            }
 
         }
     }
 }
+
+
+
+
+

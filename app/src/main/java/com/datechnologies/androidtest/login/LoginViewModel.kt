@@ -15,16 +15,18 @@ import okhttp3.Request
 import okio.IOException
 
 class LoginViewModel(): ViewModel() {
-    var result: String = ""
     val network = LoginNetworking()
     var email by mutableStateOf("")
     var password by mutableStateOf("")
+    var login_response by mutableStateOf("")
+    var message_dialog by mutableStateOf(false)
 
     fun login() {
         viewModelScope.launch {
-            network.loginOutput(email, password)
+            login_response = network.loginOutput(email, password)
 
         }
+        message_dialog = !message_dialog
 
     }
 }

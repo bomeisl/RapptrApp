@@ -19,8 +19,9 @@ import androidx.navigation.NavController
 import com.datechnologies.androidtest.R
 import com.datechnologies.androidtest.navigation.Header
 import okhttp3.OkHttpClient
+import kotlin.math.log
 
-private val client = OkHttpClient()
+val client = OkHttpClient()
 
 @Composable
 fun LoginScreen(
@@ -32,8 +33,9 @@ fun LoginScreen(
         Column {
             Header(navController = navController, "Login", true)
             Spacer(modifier = Modifier.height(40.dp))
-            Column(modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+            Column(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
             ) {
                 TextField(
                     value = loginViewModel.email,
@@ -60,13 +62,19 @@ fun LoginScreen(
                     modifier = Modifier
                         .width(300.dp)
                         .height(55.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF0E5C89),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(0xFF0E5C89),
                     ),
                     onClick = { loginViewModel.login() }) {
-                    Text(color = Color.White,
+                    Text(
+                        color = Color.White,
                         fontWeight = FontWeight.Medium,
                         fontSize = 16.sp,
-                        text = "LOGIN")
+                        text = "LOGIN"
+                    )
+                }
+                if (loginViewModel.message_dialog) {
+                    MessageDialog(loginViewModel)
                 }
             }
         }
@@ -103,17 +111,17 @@ fun LoginTextField(field: String) {
 
 
 @Composable
-fun MessageDialog(response: String, loginViewModel: LoginViewModel) {
+fun MessageDialog(loginViewModel: LoginViewModel) {
     AlertDialog(
         onDismissRequest = {
-            var openDialog = false
+            var message_dialog = false
         },
         title = {
-            Text(text = "Title")
+            Text(text = "Login Error")
         },
         text = {
             Text(
-                text = loginViewModel.result
+                text = loginViewModel.login_response
             )
         },
         buttons = {
@@ -123,7 +131,7 @@ fun MessageDialog(response: String, loginViewModel: LoginViewModel) {
             ) {
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { var openDialog = false }
+                    onClick = { var message_dialog = false }
                 ) {
                     Text("Dismiss")
                 }
