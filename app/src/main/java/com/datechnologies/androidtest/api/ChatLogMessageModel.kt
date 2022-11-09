@@ -1,13 +1,14 @@
 package com.datechnologies.androidtest.api
 
-data class ChatLogMessageModel(
-    var userId: Int = 0,
-    var avatarUrl: String? = null,
-    var username: String? = null,
-    var message: String? = null
+data class RawChatLog(
+    val data: List<ChatLogMessageModel>
 )
 
-data class ChatRawDataModel(
-    var header: String = "data",
-    var body: List<ChatLogMessageModel>
+
+data class ChatLogMessageModel(
+    val user_id: String,
+    val name: String,
+    val avatar_url: String,
+    val message: String
 )
+

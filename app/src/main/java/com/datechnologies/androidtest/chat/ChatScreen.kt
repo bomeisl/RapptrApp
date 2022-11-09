@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.datechnologies.androidtest.api.ChatLogMessageModel
+import com.datechnologies.androidtest.chat.data.JsonParser
 import com.datechnologies.androidtest.navigation.Header
 
 
@@ -18,18 +19,17 @@ import com.datechnologies.androidtest.navigation.Header
 fun ChatScreen(
     navController: NavController,
     chatViewModel: ChatViewModel = viewModel(),
-    chatLogList: String = chatViewModel.data,
 ) {
     Column() {
         Header(navController, "Chat", true)
-//        LazyColumn {
-//            items(chatLogList) { chat ->
-//                chat.username?.let { Text(text = it) }
-//            }
-        //}
-        Text(text = chatLogList)
+        LazyColumn {
+            items(chatViewModel.message) { chat ->
+                ChatCard(chatLogMessageModel = chat) }
+            }
         }
     }
+
+
 
 
 
@@ -43,8 +43,8 @@ fun ChatScreen(
 
                 }
                 Column() {
-                    chatLogMessageModel.username?.let { Text(text = it) }
-                    chatLogMessageModel.message?.let { Text(text = it) }
+                    Text(text = chatLogMessageModel.name.toString())
+                    Text(text = chatLogMessageModel.message.toString())
                 }
 
             }
