@@ -1,12 +1,15 @@
 package com.datechnologies.androidtest.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -30,7 +33,13 @@ fun LoginScreen(
         BackgroundImage()
         Column {
             Header(navController = navController, "Login", true)
-            Spacer(modifier = Modifier.height(40.dp))
+            Surface(modifier = Modifier
+                .fillMaxWidth()
+                .height(16.dp),
+                color = Color.Black.copy(alpha = 0.2f)) {
+
+            }
+            Spacer(modifier = Modifier.height(16.dp))
             Column(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
@@ -77,12 +86,22 @@ fun LoginScreen(
                         fontSize = 16.sp,
                         text = "LOGIN"
                     )
+
+
                 }
                 if (loginViewModel.message_dialog) {
                     MessageDialog(loginViewModel, navController)
                 }
+
+                }
+            Spacer(modifier = Modifier.height(24.dp))
+            Surface(modifier = Modifier
+                .fillMaxSize(),
+            color = Color.Black.copy(alpha = 0.2f)) {
+
             }
         }
+
     }
 }
 
