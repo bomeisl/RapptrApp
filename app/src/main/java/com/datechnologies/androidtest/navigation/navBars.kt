@@ -20,7 +20,7 @@ fun Header(navController: NavController, screen: String, back: Boolean) {
     Box(
         Modifier
             .fillMaxWidth()
-            .height(62.dp)
+            .height(72.dp)
             .background(color = Color(0xFF0E5C89))
     ) {
         Row(
