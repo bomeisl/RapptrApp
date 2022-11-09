@@ -36,19 +36,26 @@ fun LoginScreen(
                     .align(Alignment.CenterHorizontally)
             ) {
                 TextField(
+                    placeholder = { Text(text = "email", fontSize = 16.sp, color = Color(0xFF5F6063)) },
                     value = loginViewModel.email,
                     onValueChange = {
                         loginViewModel.email = it
                     },
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color(0xFF7B7B7E),
+                        focusedIndicatorColor = Color(0xFF0E5C89)
                     ),
                     textStyle = TextStyle(Color.Black)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 TextField(
+                    placeholder = { Text(text = "password", fontSize = 16.sp, color = Color(0xFF5F6063)) },
                     colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.Transparent
+                        backgroundColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color(0xFF7B7B7E),
+                        focusedIndicatorColor = Color(0xFF0E5C89)
+
                     ),
                     value = loginViewModel.password,
                     onValueChange = {
@@ -88,7 +95,7 @@ fun BackgroundImage() {
         .size(800.dp),
         painter = painterResource(id = R.drawable.gpc_sunset),
         contentScale = ContentScale.Crop,
-        contentDescription = "city background",
+        contentDescription = "sunset",
 
         )
 }
