@@ -1,7 +1,7 @@
 # Rapptr_Android
 Rapptr Android Programming Test
 
-  Thank you for considering me for the Rapptr Android Software Engineering Apprenticeship! To show my appreciation, I've rewritten the project
+  Thank you for considering me for a Rapptr Android Software Engineering position! To show my appreciation, I've rewritten the project
 you've sent me from the ground up in Kotlin. Furthermore, I have redesigned the application outlined in the code scaffold you sent me to harnesss the full power of the latest cutting edge Kotlin based libraries and updated the architechture of the application in accordance with Google's recommended Android platform best practices! 
   Of course the finished product still has the exact look and functionality of the storyboard and specifications you sent me. However, it will improve upon the original design of the scaffold code in several significant ways: 
   
