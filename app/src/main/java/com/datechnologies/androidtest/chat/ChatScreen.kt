@@ -1,5 +1,6 @@
 package com.datechnologies.androidtest.chat
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -49,7 +50,9 @@ fun ChatScreen(
 
     @Composable
     fun ChatCard(chatLogMessageModel: ChatLogMessageModel) {
-        Surface() {
+        Surface(modifier = Modifier
+            .background(color = Color(0xFFF9F9F9))
+        ) {
             Row() {
                 Surface(modifier = Modifier
                     .padding(7.dp),
