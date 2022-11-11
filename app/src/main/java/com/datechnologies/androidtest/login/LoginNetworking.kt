@@ -2,11 +2,10 @@ package com.datechnologies.androidtest.login
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.*
-import okhttp3.MultipartBody.Companion.FORM
-import okhttp3.internal.format
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.IOException
-import java.text.Normalizer.Form
 
 
 class LoginNetworking {

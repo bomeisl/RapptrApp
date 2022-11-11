@@ -9,7 +9,6 @@ import com.beust.klaxon.Klaxon
 import com.datechnologies.androidtest.api.ChatLogMessageModel
 import com.datechnologies.androidtest.api.RawChatLog
 import com.datechnologies.androidtest.chat.data.ChatNetworking
-import com.datechnologies.androidtest.chat.data.JsonParser
 import kotlinx.coroutines.launch
 
 class ChatViewModel(): ViewModel() {

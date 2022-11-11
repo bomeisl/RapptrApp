@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
@@ -53,31 +54,6 @@ fun HomeScreen(navController: NavController) {
     }
 }
 
-@Preview
-@Composable
-fun HeaderPreview() {
-    Box(
-        Modifier
-            .fillMaxWidth()
-            .height(62.dp)
-            .background(color = Color(0xFF0E5C89))
-    ) {
-        Row(
-            Modifier
-                .padding(horizontal = 30.dp)
-                .padding(vertical = 20.dp),
-            horizontalArrangement = Arrangement.Start) {
-            Column(verticalArrangement = Arrangement.Center) {
-                Text(
-                    color = Color.White,
-                    text = "Coding Tasks")
-
-            }
-        }
-
-    }
-
-}
 
 @Composable
 fun BackgroundImage() {
@@ -93,6 +69,7 @@ fun BackgroundImage() {
 @Composable
 fun MenuButton(type: String, icon: Painter, destination: String, navController: NavController) {
     Button(modifier = Modifier
+        .shadow(2.dp)
         .width(530.dp)
         .height(55.dp),
         colors = ButtonDefaults.buttonColors(

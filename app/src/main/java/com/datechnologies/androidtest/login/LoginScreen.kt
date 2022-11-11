@@ -1,15 +1,12 @@
 package com.datechnologies.androidtest.login
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -21,8 +18,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.datechnologies.androidtest.R
 import com.datechnologies.androidtest.navigation.Header
-import okhttp3.OkHttpClient
-import kotlin.math.log
 
 @Composable
 fun LoginScreen(
@@ -119,20 +114,6 @@ fun BackgroundImage() {
         )
 }
 
-@Composable
-fun LoginTextField(field: String) {
-    TextField(
-        value = TextFieldValue("username"),
-        onValueChange = {
-
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
-        ),
-        textStyle = TextStyle(Color.Black)
-    )
-}
-
 
 @Composable
 fun MessageDialog(loginViewModel: LoginViewModel, navController: NavController) {
@@ -145,7 +126,7 @@ fun MessageDialog(loginViewModel: LoginViewModel, navController: NavController) 
         },
         text = {
             Text(
-                text = loginViewModel.message
+                text = loginViewModel.message+"\n API call took "+loginViewModel.api_time+"ms"
             )
         },
         buttons = {

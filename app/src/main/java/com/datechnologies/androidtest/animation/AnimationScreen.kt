@@ -3,18 +3,17 @@ package com.datechnologies.androidtest.animation
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.consumeAllChanges
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -24,7 +23,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.datechnologies.androidtest.R
 import com.datechnologies.androidtest.navigation.Header
-import com.datechnologies.androidtest.navigation.Screens
 import kotlin.math.roundToInt
 
 @Composable
@@ -37,7 +35,9 @@ fun AnimationScreen(navController: NavController) {
                     .fillMaxSize()
                     .weight(1f)
                     .padding(start = 30.dp, end = 30.dp, bottom = 30.dp)) {
-                Column() {
+                Column(modifier = Modifier
+                    .align(CenterHorizontally)
+                ) {
                     AnimatedLogo()
                 }
 
@@ -69,41 +69,37 @@ fun AnimatedLogo() {
                     .offset { IntOffset(offset_x.roundToInt(), offset_y.roundToInt()) }
                     .pointerInput(Unit) {
                         detectDragGestures { change, dragAmount ->
-                            change.consumeAllChanges()
+                            change.consume()
                             offset_x += dragAmount.x
                             offset_y += dragAmount.y
                         }
                     }) {
-
-                    Image(modifier = Modifier
-                        .alpha(alpha = alpha.value),
+                    Row() {
+                        Spacer(modifier = Modifier.width(20.dp))
+                        Image(modifier = Modifier
+                            .alpha(alpha = alpha.value),
                             painter = painterResource(id = R.drawable.gpc_logo),
                             contentDescription = "D+A Logo"
                         )
                     }
+                    }
                         }
             Spacer(modifier = Modifier.height(400.dp))
-            Button(modifier = Modifier
-                .width(400.dp)
-                .height(60.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF0E5C89),
+        Button(modifier = Modifier
+            .width(400.dp)
+            .height(60.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF0E5C89),
 
-                    ),
-                onClick = { animate = !animate },
-            ) {
-                if (animate) {
-                    Text(color = Color.White,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        text = "FADE IN")
-                } else {
-                    Text(color = Color.White,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        text = "FADE IN")
-                }
+                ),
+            onClick = { animate = !animate },
+        ) {
+            Text(color = Color.White,
+                fontWeight = FontWeight.Medium,
+                fontSize = 16.sp,
+                text = "FADE IN")
         }
-    }
+           
+}
 
 
 

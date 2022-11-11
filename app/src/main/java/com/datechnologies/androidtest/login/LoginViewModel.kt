@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.datechnologies.androidtest.navigation.Screens
 import kotlinx.coroutines.launch
+import kotlin.system.measureTimeMillis
 
 class LoginViewModel(): ViewModel() {
     val network = LoginNetworking()
@@ -18,10 +19,13 @@ class LoginViewModel(): ViewModel() {
     val json_parser = JsonParser()
     var code by mutableStateOf("")
     var message by mutableStateOf("")
+    var api_time by mutableStateOf("")
 
     fun login() {
         viewModelScope.launch {
-            login_response = network.loginOutput(email, password)
+            api_time = measureTimeMillis {
+                login_response = network.loginOutput(email, password)
+            }.toString()
             code = json_parser.code(login_response).toString()
             message = json_parser.message(login_response).toString()
         }

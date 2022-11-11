@@ -11,12 +11,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,9 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.datechnologies.androidtest.R
 import com.datechnologies.androidtest.api.ChatLogMessageModel
-import com.datechnologies.androidtest.chat.data.JsonParser
 import com.datechnologies.androidtest.navigation.Header
 
 
@@ -35,6 +30,7 @@ fun ChatScreen(
     navController: NavController,
     chatViewModel: ChatViewModel = viewModel(),
 ) {
+    chatViewModel.fetchChatData()
     Column() {
         Header(navController, "Chat", true)
         LazyColumn {
@@ -61,7 +57,7 @@ fun ChatScreen(
                 ) {
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
-                            .data(chatLogMessageModel.avatar_url.toString())
+                            .data(chatLogMessageModel.avatar_url)
                             .crossfade(true)
                             .build(),
                         //placeholder = painterResource(R.drawable.placeholder),
@@ -74,7 +70,7 @@ fun ChatScreen(
                 }
                 Column() {
                     Text(
-                        text = chatLogMessageModel.name.toString(),
+                        text = chatLogMessageModel.name,
                         fontSize = 13.sp,
                         color = Color(0xFF1B1E1F),
                         fontWeight = FontWeight.Medium
@@ -86,7 +82,7 @@ fun ChatScreen(
                 ) {
                         Text(modifier = Modifier
                             .padding(8.dp),
-                            text = chatLogMessageModel.message.toString(),
+                            text = chatLogMessageModel.message,
                             fontSize = 15.sp,
                             color = Color(0xFF1B1E1F)
                             )
