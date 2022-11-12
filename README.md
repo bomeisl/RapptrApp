@@ -5,7 +5,7 @@ Rapptr Android Programming Test
 you've sent me from the ground up in Kotlin. Furthermore, I have redesigned the application outlined in the code scaffold you sent me to harnesss the full power of the latest cutting edge Kotlin based libraries and updated the architechture of the application in accordance with Google's recommended Android platform best practices! 
   Of course the finished product still has the exact look and functionality of the storyboard and specifications you sent me. However, it will improve upon the original design of the scaffold code in several significant ways: 
   
-1) It will be computationally cheaper to run so loading times between will be shorter and crashes and hangs will be much less likely thanks to Kotlin's highly optimized coroutines for network and IO calls, Jetpack Compose UI components, and Compose based navigation between screens instead of starting a new Activity with an Intent for each screen. This is in accordance with Google' architecture recommendation that Activities serve only a user point of entry for applications.
+1) It will be computationally cheaper to run so loading times between screens will be shorter and crashes and hangs will be much less likely thanks to Kotlin's highly optimized coroutines for network and IO calls, Jetpack Compose UI components, and Compose based navigation between screens instead of starting a new Activity with an Intent for each screen. This is in accordance with Google' architecture recommendation that Activities serve only a user point of entry for applications.
 
 2) Compose's modularity and reusability in UI design mean way fewer and more descriptive lines of code for easier debugging and quicker and simple scalability.
 
